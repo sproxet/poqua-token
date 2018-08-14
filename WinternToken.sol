@@ -53,6 +53,7 @@ contract WinternToken is ERC20Interface {
     bytes32 pubKey;
     address authorizedRecipient;
     uint authorizedAmount;
+    uint txCount;
   }
 
   constructor() public {
@@ -70,6 +71,14 @@ contract WinternToken is ERC20Interface {
 
   function balanceOf(address tokenOwner) public constant returns (uint balance) {
     return holders[tokenOwner].balance;
+  }
+
+  function txCountOf(address tokenOwner) public constant returns (uint txCount) {
+    return holders[tokenOwner].txCount;
+  }
+
+  function currentPubKeyOf(address tokenOwner) public constant returns (bytes32 pubKey) {
+    return holders[tokenOwner].pubKey;
   }
 
   function transfer(address to, uint tokens) public returns (bool success) {
@@ -103,6 +112,7 @@ contract WinternToken is ERC20Interface {
     holders[msg.sender].authorizedRecipient = to;
     holders[msg.sender].authorizedAmount = tokens;
     holders[msg.sender].pubKey = newPubKey;
+    holders[msg.sender].txCount += 1; // txCount is too large to wrap around, and it's not an issue for the contract even if it does.
     emit KeyAdded(msg.sender, newPubKey);
     emit Authorized(msg.sender, to, tokens);
     return true;
