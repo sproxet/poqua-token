@@ -81,6 +81,14 @@ contract WinternToken is ERC20Interface {
     return holders[tokenOwner].pubKey;
   }
 
+  function authorizedRecipientOf(address tokenOwner) public constant returns (address authorizedRecipient) {
+    return holders[tokenOwner].authorizedRecipient;
+  }
+
+  function authorizedAmountOf(address tokenOwner) public constant returns (uint authorizedAmount) {
+    return holders[tokenOwner].authorizedAmount;
+  }
+
   function transfer(address to, uint tokens) public returns (bool success) {
     require(holders[msg.sender].balance > tokens);
 
