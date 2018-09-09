@@ -36,7 +36,7 @@ contract ERC20Interface {
 // ERC20 Token, with the addition of symbol, name and decimals and an
 // initial fixed supply
 // ----------------------------------------------------------------------------
-contract WinternToken is ERC20Interface {
+contract PoquaToken is ERC20Interface {
   using SafeMath for uint;
 
   string public symbol;
@@ -57,8 +57,8 @@ contract WinternToken is ERC20Interface {
   }
 
   constructor() public {
-    symbol = "WIN";
-    name = "WinternToken";
+    symbol = "POQUA";
+    name = "PoQuaToken";
     decimals = 18;
     _totalSupply = 1000000 * 10**uint(decimals);
     holders[msg.sender].balance = _totalSupply;
