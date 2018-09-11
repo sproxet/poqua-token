@@ -62,7 +62,7 @@ contract ERC20Faucet {
     mReentrancyLock = false;
   }
 
-  function ERC20Faucet(ERC20TokenInterface _erc20ContractAddress, uint256 _maxAllowanceInclusive) public {
+  constructor(ERC20TokenInterface _erc20ContractAddress, uint256 _maxAllowanceInclusive) public {
     mOwner = msg.sender;
     maxAllowanceInclusive = _maxAllowanceInclusive;
     erc20Contract = _erc20ContractAddress;
@@ -79,12 +79,12 @@ contract ERC20Faucet {
       return false;
     }
 
-    GetTokens(msg.sender, amount);
+    emit GetTokens(msg.sender, amount);
     return true;
   }
 
   function setMaxAllowance(uint256 _maxAllowanceInclusive) onlyOwner nonReentrant public {
-    SetMaxAllowance(msg.sender, _maxAllowanceInclusive, maxAllowanceInclusive);
+    emit SetMaxAllowance(msg.sender, _maxAllowanceInclusive, maxAllowanceInclusive);
     maxAllowanceInclusive = _maxAllowanceInclusive;
   }
 
@@ -94,12 +94,12 @@ contract ERC20Faucet {
       return false;
     }
 
-    ReclaimTokens(msg.sender, tokenBalance);
+    emit ReclaimTokens(msg.sender, tokenBalance);
     return true;
   }
 
   function setPause(bool _isPaused) onlyOwner nonReentrant public {
-    SetPause(msg.sender, _isPaused, isPaused);
+    emit SetPause(msg.sender, _isPaused, isPaused);
     isPaused = _isPaused;
   }
 }
