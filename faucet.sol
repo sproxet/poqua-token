@@ -65,7 +65,8 @@ contract ERC20Faucet {
   constructor() public {
     mOwner = msg.sender;
     maxAllowanceInclusive = 10 ** 18;
-    erc20Contract = ERC20TokenInterface(0x0000000000000000000000000000000000000000);
+    // PoQua Ropsten Testnet Address
+    erc20Contract = ERC20TokenInterface(0x11D347fE6675fe8ed032FfedA35ee6b1695A3015);
   }
 
   function getTokens(uint256 amount) notPaused nonReentrant public returns (bool) {
