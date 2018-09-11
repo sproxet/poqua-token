@@ -62,10 +62,10 @@ contract ERC20Faucet {
     mReentrancyLock = false;
   }
 
-  constructor(ERC20TokenInterface _erc20ContractAddress, uint256 _maxAllowanceInclusive) public {
+  constructor() public {
     mOwner = msg.sender;
-    maxAllowanceInclusive = _maxAllowanceInclusive;
-    erc20Contract = _erc20ContractAddress;
+    maxAllowanceInclusive = 10 ** 18;
+    erc20Contract = ERC20TokenInterface(0x0000000000000000000000000000000000000000);
   }
 
   function getTokens(uint256 amount) notPaused nonReentrant public returns (bool) {
