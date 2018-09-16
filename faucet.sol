@@ -40,8 +40,8 @@ contract ERC20Faucet {
   address private mOwner;
   bool private mReentrancyLock = false;
 
-  event GetTokens(address requestor, uint256 amount);
-  event ReclaimTokens(address owner, uint256 tokenAmount);
+  event GetTokens(address indexed requestor, uint256 amount);
+  event ReclaimTokens(address indexed owner, uint256 tokenAmount);
   event SetPause(address setter, bool newState, bool oldState);
   event SetMaxAllowance(address setter, uint256 newState, uint256 oldState);
 
